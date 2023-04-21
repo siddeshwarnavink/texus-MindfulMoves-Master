@@ -16,8 +16,8 @@ function App() {
 
   if (!user) {
     return <AuthPage />
-  }
-
+  }  
+  
   return (
     <Layout>
       <Routes>
