@@ -1,7 +1,7 @@
 import classes from './input.module.scss';
 
-export function Input({ children, ...otherProps }) {
+export function Input({ children, forwardedRef, ...otherProps }) {
     return (
-        <input className={classes.Input} {...otherProps} />
+        <input ref={forwardedRef} className={classes.Input} {...otherProps} />
     )
 }

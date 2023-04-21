@@ -7,16 +7,16 @@ import { DietPage } from "./pages/diet";
 import firebaseApp from './config/firebaseApp';
 import { MeditationPage } from "./pages/meditation";
 import { GoalSettingsPage } from "./pages/goalSettings";
-// import { AuthPage } from "./pages/auth";
+import { AuthPage } from "./pages/auth";
 
 const auth = getAuth(firebaseApp);
 
 function App() {
   const [user] = useAuthState(auth);
 
-  // if (!user) {
-  //   return <AuthPage />
-  // }
+  if (!user) {
+    return <AuthPage />
+  }
 
   return (
     <Layout>
