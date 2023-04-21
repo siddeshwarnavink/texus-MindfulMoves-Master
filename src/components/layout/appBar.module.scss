@@ -1,0 +1,37 @@
+.AppBar {
+    padding: 10px;
+    display: flex;
+
+    .Logo {
+        img {
+            width: 125px;
+        }
+    }
+
+    .Navigation {
+        display: flex;
+        text-align: center;
+        align-items: center;
+
+        a.NavigationLink {
+            display: flex;
+            padding: 10px 12px;
+            font-size: 1.2em;
+            text-decoration: none;
+            color: #777;
+            margin-left: 12px;
+
+            &.Active {
+                // color: #000 !important;
+                background: linear-gradient(to right, #EC268F 0%, #F58634 100%);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                font-weight: bold;
+            }
+
+            span {
+                display: block;
+            }
+        }
+    }
+}
