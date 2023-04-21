@@ -1,0 +1,14 @@
+.FoodList {
+    border-collapse: collapse;
+    width: 100%;
+
+    tr {
+        border-bottom: 1px solid #ddd;
+    }
+
+    th,
+    td {
+        padding: 12px;
+        text-align: left;
+    }
+}
