@@ -1,4 +1,5 @@
 import { ref, getDatabase, push, update, remove } from 'firebase/database';
+import { useEffect } from 'react';
 import { useList } from 'react-firebase-hooks/database';
 import { DietSummary } from '../components/diet/dietSummary';
 import { FoodList } from '../components/diet/foodList';
@@ -12,14 +13,15 @@ export function DietPage(props) {
     const [myDietListSnapshots, myDietListLoading] = useList(ref(database, 'my-diet-list/' + props.user.uid));
 
     const loadedFoodList = [];
+    const myDietList = [];
+    myDietListSnapshots.map((v) => {
+        myDietList.push({
+            ...v.val(),
+            dbId: v.key
+        })
+    });
     if ((!foodListLoading && foodListSnapshots) && (!myDietListLoading && myDietListSnapshots)) {
-        const myDietList = [];
-        myDietListSnapshots.map((v) => {
-            myDietList.push({
-                ...v.val(),
-                dbId: v.key
-            })
-        });
+
         foodListSnapshots.map((v, index) => {
             loadedFoodList.push({
                 id: v.key,
@@ -47,10 +49,15 @@ export function DietPage(props) {
             })
         }
     }
+
+    let caloreTotal = 0;
+    myDietList.forEach(myDiet => {
+        caloreTotal += loadedFoodList[myDiet.id].calories * myDiet.quantity;
+    });
     return (
         <div>
             <h1>My Diet</h1>
-            <DietSummary total={0}/>
+            <DietSummary total={caloreTotal} />
             <FoodList
                 list={loadedFoodList}
                 addToList={addFoodToListHandler}
